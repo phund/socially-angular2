@@ -5,6 +5,7 @@ autopublish@1.0.7
 autoupdate@1.2.9
 babel-compiler@6.6.4
 babel-runtime@0.1.8
+barbatus:angular2-runtime@0.2.3_2
 barbatus:typescript@0.2.11
 barbatus:typescript-compiler@0.5.8
 barbatus:typescript-runtime@0.1.1
