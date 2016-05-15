@@ -1,5 +1,4 @@
-import { Meteor } from 'meteor/meteor';
-
-Meteor.startup(() => {
-  // code to run on server at startup
-});
+import {loadParties} from './load-parties.ts';
+import {Meteor} from 'meteor/meteor';
+ 
+Meteor.startup(loadParties);
