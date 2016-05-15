@@ -1,8 +1,13 @@
-<header>
-  <a [routerLink]="['/PartiesList']">Back</a>
-  <h2>{{party.name}}</h2>
- 
-  <p>{{party.description}}</p>
- 
-  <p>{{party.location}}</p>
-</header>
+<form #f="ngForm" [ngFormModel]="partyForm" (submit)="saveParty(f.value)">
+  <label>Name</label>
+  <input type="text" ngControl="name" [(ngModel)]="party.name">
+
+  <label>Description</label>
+  <input type="text" ngControl="description" [(ngModel)]="party.description">
+
+  <label>Location</label>
+  <input type="text" ngControl="location" [(ngModel)]="party.location">
+
+  <button type="submit">Save</button>
+  <button [routerLink]="['/PartiesList']">Cancel</button>
+</form>
