@@ -9,7 +9,8 @@ import { FormBuilder, ControlGroup, Validators, Control } from '@angular/common'
   directives: [RouterLink]
 })
 export class PartyDetails {
-  party: Object;
+  party: Party;
+  partyForm: ControlGroup;
  
   constructor(params: RouteParams) {
     let partyId = params.get('partyId');
@@ -29,7 +30,7 @@ export class PartyDetails {
   saveParty(party) {
     console.log("save");
     console.log(party);  
-    let pateyId = Parties.update(party._id, {
+    Parties.update(party._id, {
       $set: {
         name: party.name,
         description: party.description,
