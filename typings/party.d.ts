@@ -3,5 +3,6 @@ interface Party {
   name: string;
   description?: string;
   location: string;
-  owner?: string
+  owner?: string;
+  public: boolean;
 }

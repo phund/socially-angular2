@@ -1,4 +1,4 @@
-<form #f="ngForm" [ngFormModel]="partyForm" (submit)="saveParty(f.value)">
+<form #f="ngForm" [ngFormModel]="partyForm" (submit)="saveParty(f.value)" *ngIf="party">
   <label>Name</label>
   <input type="text" ngControl="name" [(ngModel)]="party.name">
 

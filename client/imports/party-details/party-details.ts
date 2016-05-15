@@ -4,32 +4,28 @@ import { Parties } from '../../../collections/parties.ts';
 import { FormBuilder, ControlGroup, Validators, Control } from '@angular/common';
 import { Meteor } from 'meteor/meteor';
 import { RequireUser } from 'angular2-meteor-accounts-ui';
+import { MeteorComponent } from 'angular2-meteor';
 
-function checkPermissions(instruction: ComponentInstruction) {
-  console.log("check");
-  console.log(Meteor.userId());
-  var partyId = instruction.params['partyId'];
-  var party = Parties.findOne(partyId);
-  console.log(party.owner, Meteor.userId());
-  return (party && party.owner == Meteor.userId());
-}
- 
+
 @Component({
   selector: 'party-details',
   templateUrl: '/client/imports/party-details/party-details.html',
   directives: [RouterLink]
 })
-@CanActivate(checkPermissions)
-export class PartyDetails {
+@RequireUser()
+
+export class PartyDetails extends MeteorComponent {
   party: Party;
   partyForm: ControlGroup;
  
   constructor(params: RouteParams) {
+    super();
     let partyId = params.get('partyId');
     let fb = new FormBuilder();
 
-    this.party = Parties.findOne(partyId);
-    console.log(this.party);
+    this.subscribe('party', partyId, () => {
+      this.party = Parties.findOne(partyId);
+    }, true);
 
     this.partyForm = fb.group({
       _id: [partyId],
